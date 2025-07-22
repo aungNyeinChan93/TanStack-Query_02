@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { queryOptions } from "@tanstack/react-query";
 
 const fetchUsers = async () => {
@@ -6,8 +7,9 @@ const fetchUsers = async () => {
   return users;
 };
 
-const CreateUsersQueryOption = () => {
+const CreateUsersQueryOption = (options?: any) => {
   return queryOptions({
+    ...options,
     queryKey: ["users"],
     queryFn: fetchUsers,
     staleTime: 10000 * 60 * 30,
