@@ -1,7 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import { QueryClient, useQuery } from "@tanstack/react-query";
+import React, { useEffect } from "react";
 import TestError from "./TestError";
 
+const demoQuotes = [
+  { id: 1, quote: "demo quote 1", author: "chan" },
+  { id: 2, quote: "demo quote 2", author: "susu" },
+];
 const fetchQuotes = async () => {
   try {
     const response = await fetch(`https://dummyjson.com/quotes`);
@@ -13,7 +17,20 @@ const fetchQuotes = async () => {
   }
 };
 
+// prefetch
+const client = new QueryClient();
+const prefetch = () => {
+  client.prefetchQuery({
+    queryKey: ["quotes"],
+    queryFn: fetchQuotes,
+  });
+};
+
 const Quote = () => {
+  useEffect(() => {
+    prefetch();
+  }, []);
+
   const {
     data: TopTenQuotes,
     isLoading,
@@ -26,7 +43,10 @@ const Quote = () => {
     select: (data) => {
       return data.slice(0, 10);
     },
-    refetchOnWindowFocus: false, //default true
+    refetchOnWindowFocus: true, //default true
+    refetchInterval: 1000 * 60 * 60,
+    placeholderData: demoQuotes,
+    // initialData: demoQuotes, // initialData is cached
   });
 
   if (isLoading) return <>Loading . . .</>;

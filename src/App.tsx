@@ -1,10 +1,13 @@
 import React from "react";
-import TestPosts from "./components/share/TestPosts";
+// import Quote from "./components/share/Quote";
+// import TestComments from "./components/share/TestComments";
+// import TestInfiniteQuery from "./components/share/TestInfiniteQuery";
+// import TestProducts from "./components/share/TestProducts";
+// import TestPosts from "./components/share/TestPosts";
 // import TestQuotes from "./components/share/TestQuotes";
 // import TestUsers from "./components/share/TestUsers";
 // import Todo from "./components/share/Todo";
 // import TestUseSuspenseQuery from "./components/share/TestUseSuspenseQuery";
-// import Quote from "./components/share/Quote";
 
 const App = () => {
   return (
@@ -15,7 +18,10 @@ const App = () => {
         {/* <TestUseSuspenseQuery /> */}
         {/* <TestUsers /> */}
         {/* <TestQuotes /> */}
-        <TestPosts />
+        {/* <TestPosts /> */}
+        {/* <TestProducts /> */}
+        {/* <TestInfiniteQuery /> */}
+        {/* <TestComments /> */}
       </section>
     </React.Fragment>
   );
